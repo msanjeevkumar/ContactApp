@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
+import { ContactService } from './services/contact.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -9,7 +10,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' })
   ],
-  providers: [],
+  providers: [ContactService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

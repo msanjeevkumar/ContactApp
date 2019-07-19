@@ -1,5 +1,6 @@
 import express from '@feathersjs/express';
 import feathers from '@feathersjs/feathers';
+import cors from 'cors';
 import logger from 'feathers-logger';
 import service from 'feathers-sequelize';
 import * as morgan from 'morgan';
@@ -9,6 +10,7 @@ import { Contact } from './models';
 require('./sequelize');
 
 const app = express(feathers());
+app.use(cors());
 app.configure(logger(morgan('dev')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

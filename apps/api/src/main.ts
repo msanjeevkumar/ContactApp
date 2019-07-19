@@ -7,10 +7,6 @@ import { environment } from './environments/environment';
 const { port } = environment;
 (async () => {
   await syncModelSchemas();
-  await Contact.destroy({
-    where: {},
-    truncate: true
-  });
   const contacts = await Contact.findOne({});
   if (!contacts) {
     const numbers = [...Array(50).keys()];
