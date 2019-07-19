@@ -5,5 +5,5 @@
 export const environment = {
   production: false,
   port: 3000,
-  dbConnectionString: 'mysql://user:password@127.0.0.1:3306/db',
+  dbConnectionString: 'mysql://user:password@127.0.0.1:3306/db'
 };

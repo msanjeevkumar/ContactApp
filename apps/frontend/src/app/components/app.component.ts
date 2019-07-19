@@ -6,12 +6,11 @@ import { ContactService } from '../services/contact.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'frontend';
-  constructor(private contactService: ContactService){
-  }
+  constructor(private contactService: ContactService) {}
 
   ngOnInit(): void {
-    this.contactService.getContacts().then(contacts=> console.log(contacts));
+    this.contactService.getContacts().then(contacts => console.log(contacts));
   }
 }

@@ -4,7 +4,7 @@
   "license": "MIT",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run format && npm run lint"
     }
   },
   "scripts": {

@@ -11,15 +11,14 @@ const { port } = environment;
   if (!contacts) {
     const numbers = [...Array(50).keys()];
     await Promise.all(
-      numbers.map(
-        number =>
-          new Contact({
-            name: `Sanjeev Kumar${number + 1}`,
-            email: `sanjeevkumar${number + 1}@email.com`,
-            dateOfBirth: new Date(),
-            gender: Gender.MALE,
-            budget: number + 1
-          }).save()
+      numbers.map(number =>
+        new Contact({
+          name: `Sanjeev Kumar${number + 1}`,
+          email: `sanjeevkumar${number + 1}@email.com`,
+          dateOfBirth: new Date(),
+          gender: Gender.MALE,
+          budget: number + 1
+        }).save()
       )
     );
 
@@ -30,4 +29,3 @@ const { port } = environment;
     console.log(`Feathers server listening on port ${port}`);
   });
 })();
-

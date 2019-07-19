@@ -16,14 +16,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.configure(express.rest());
 
-app.use('/contacts', service({
-  Model: Contact,
-  paginate: {
-    default: 10,
-    max: 10
-  }
-}));
-
+app.use(
+  '/contacts',
+  service({
+    Model: Contact,
+    paginate: {
+      default: 10,
+      max: 10
+    }
+  })
+);
 
 app.use(express.errorHandler());
 export { app };

@@ -6,12 +6,8 @@ import { ContactService } from './services/contact.service';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' })
-  ],
+  imports: [BrowserModule, RouterModule.forRoot([], { initialNavigation: 'enabled' })],
   providers: [ContactService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -21,9 +21,9 @@ describe('workspace-project App', () => {
       .get(logging.Type.BROWSER);
     expect(logs).not.toContain(
       // tslint:disable-next-line:no-object-literal-type-assertion
-      jasmine.objectContaining({
+      jasmine.objectContaining(({
         level: logging.Level.SEVERE
-      } as unknown as logging.Entry)
+      } as unknown) as logging.Entry)
     );
   });
 });

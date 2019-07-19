@@ -9,10 +9,8 @@ export class ContactService {
 
   constructor() {
     this.contacts = feathers()
-      .configure(
-        rest(environment.apiBaseUrl)
-          .fetch(window.fetch)
-      ).service('contacts');
+      .configure(rest(environment.apiBaseUrl).fetch(window.fetch))
+      .service('contacts');
   }
 
   getContacts = async (): Promise<ContactsDto> =>
