@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'data',
+  name: 'contacts.dtos.ts',
   preset: '../../jest.config.js',
   transform: {
     '^.+\\.[tj]sx?$': 'ts-jest'

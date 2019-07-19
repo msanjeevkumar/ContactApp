@@ -1,11 +1,5 @@
 export const environment = {
   production: true,
-  database: {
-    name: 'db',
-    host: 'localhost',
-    port: 3306,
-    username: 'user',
-    password: 'password'
-  },
+  dbConnectionString: 'mysql://user:password@127.0.0.1:3306/db',
   port: 3000
 };

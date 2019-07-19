@@ -1,14 +1,10 @@
 import { Sequelize } from 'sequelize-typescript';
 import { environment } from '../environments/environment';
+import { Contact } from './models';
+const models = [Contact];
+const sequelize = new Sequelize(environment.dbConnectionString);
+sequelize.addModels(models);
 
-const { name: database, host, port, username, password } = environment.database;
-
-export const sequelize = new Sequelize({
-  database,
-  host,
-  port,
-  dialect: 'mysql',
-  username,
-  password
-});
+const syncModelSchemas = async () => await Promise.all(models.map(model => model.sync()));
+export { sequelize, syncModelSchemas }
 
