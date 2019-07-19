@@ -1,6 +1,6 @@
 import { ContactDto } from './contact.dto';
 
-interface ContactsDto {
+export interface ContactsDto {
   total: number,
   limit: number,
   skip: number,

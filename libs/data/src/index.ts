@@ -1,1 +1,2 @@
-export * from './dtos/data';
+export * from './dtos';
+export * from './enums';

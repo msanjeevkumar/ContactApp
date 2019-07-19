@@ -1,4 +1,4 @@
-import { Gender } from '../enum/gender.enum';
+import { Gender } from '../enums';
 
 export interface ContactDto {
   id: number;
