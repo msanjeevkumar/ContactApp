@@ -1,5 +1,5 @@
-import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
+import { AppPage } from './app.po';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to frontend!');
+  it('should display welcome message', async () => {
+    await page.navigateTo();
+    expect(await page.getTitleText()).toEqual('Welcome to frontend!');
   });
 
   afterEach(async () => {
@@ -20,9 +20,10 @@ describe('workspace-project App', () => {
       .logs()
       .get(logging.Type.BROWSER);
     expect(logs).not.toContain(
+      // tslint:disable-next-line:no-object-literal-type-assertion
       jasmine.objectContaining({
         level: logging.Level.SEVERE
-      } as logging.Entry)
+      } as unknown as logging.Entry)
     );
   });
 });

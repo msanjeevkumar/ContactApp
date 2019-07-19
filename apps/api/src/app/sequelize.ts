@@ -5,6 +5,6 @@ const models = [Contact];
 const sequelize = new Sequelize(environment.dbConnectionString);
 sequelize.addModels(models);
 
-const syncModelSchemas = async () => await Promise.all(models.map(model => model.sync()));
+const syncModelSchemas = async () => Promise.all(models.map(model => model.sync()));
 export { sequelize, syncModelSchemas }
 

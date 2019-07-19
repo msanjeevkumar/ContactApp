@@ -1,9 +1,11 @@
-import feathers from '@feathersjs/feathers';
 import express from '@feathersjs/express';
-import service from 'feathers-sequelize';
+import feathers from '@feathersjs/feathers';
 import logger from 'feathers-logger';
+import service from 'feathers-sequelize';
 import * as morgan from 'morgan';
 import { Contact } from './models';
+
+// tslint:disable-next-line:no-var-requires
 require('./sequelize');
 
 const app = express(feathers());

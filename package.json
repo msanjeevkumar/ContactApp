@@ -2,6 +2,11 @@
   "name": "myapp",
   "version": "0.0.0",
   "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -74,9 +79,10 @@
     "@types/karma-jasmine": "~0.0.31",
     "@types/morgan": "^1.7.35",
     "@types/node": "~8.9.4",
-    "@types/prettier": "1.16.4",
+    "@types/prettier": "^1.18.0",
     "codelyzer": "~5.0.1",
     "dotenv": "6.2.0",
+    "husky": "^3.0.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "24.1.0",
@@ -85,11 +91,12 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "prettier": "1.16.4",
-    "protractor": "~5.4.0",
+    "prettier": "^1.18.2",
+    "protractor": "^5.4.2",
     "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.4.5"
   }
 }

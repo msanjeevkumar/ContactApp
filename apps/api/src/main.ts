@@ -1,12 +1,16 @@
-import { app } from './app';
-import { environment } from './environments/environment';
-import { syncModelSchemas } from './app/sequelize';
-import { Contact } from './app/models';
 import { Gender } from '@myapp/data';
+import { app } from './app';
+import { Contact } from './app/models';
+import { syncModelSchemas } from './app/sequelize';
+import { environment } from './environments/environment';
 
 const { port } = environment;
 (async () => {
   await syncModelSchemas();
+  await Contact.destroy({
+    where: {},
+    truncate: true
+  });
   const contacts = await Contact.findOne({});
   if (!contacts) {
     const numbers = [...Array(50).keys()];
