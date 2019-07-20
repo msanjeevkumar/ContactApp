@@ -15,9 +15,7 @@
   </ul>
 </nav>
 <div class="row">
-  <div class="h5">
-    Showing {{ skip + 1 }} to {{(skip + limit) > totalContacts ? totalContacts : skip + limit}}
-  </div>
+  <div class="h5">Showing {{ skip + 1 }} to {{ skip + limit > totalContacts ? totalContacts : skip + limit }}</div>
   <table class="table table-striped">
     <thead>
     <tr>

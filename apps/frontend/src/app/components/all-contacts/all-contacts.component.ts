@@ -26,7 +26,7 @@ export class AllContactsComponent implements OnInit {
         this.totalContacts = contacts.total;
         this.limit = contacts.limit;
         this.skip = contacts.skip;
-        this.pagination = Array.from(Array(Math.ceil(this.totalContacts / 10)).keys()).map(page => page + 1);
+        this.pagination = Array.from(Array(Math.ceil(this.totalContacts / this.limit)).keys()).map(page => page + 1);
       }),
       pluck('data')
     ) as undefined) as Observable<ContactModel[]>;
