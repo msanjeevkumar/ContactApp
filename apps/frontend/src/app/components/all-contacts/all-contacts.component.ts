@@ -11,7 +11,7 @@ import { ContactService } from '../../services/contact.service';
 })
 export class AllContactsComponent implements OnInit {
   contacts: Observable<ContactModel[]>;
-  skipCount = 0;
+  nextPageStartIndex = 0;
   totalContacts = 0;
   pagination: number[] = [];
 
@@ -19,10 +19,11 @@ export class AllContactsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contacts = (from(this._contactService.getContacts(this.skipCount))
+    this.contacts = (from(this._contactService.getContacts(this.nextPageStartIndex))
       .pipe(
         tap(contacts => {
           this.totalContacts = contacts.total;
+          this.nextPageStartIndex = contacts.skip + contacts.limit;
           this.pagination = Array.from(Array(Math.ceil(this.totalContacts / 10)).keys()).map(page => page + 1);
         }),
         pluck('data')
@@ -30,22 +31,26 @@ export class AllContactsComponent implements OnInit {
   }
 
   getNextPage() {
-    this.skipCount += 10;
-    this.contacts = (from(this._contactService.getContacts(this.skipCount))
-      .pipe(pluck('data')) as undefined) as Observable<ContactModel[]>;
+    this.contacts = (from(this._contactService.getContacts(this.nextPageStartIndex))
+      .pipe(
+        tap(contacts => this.nextPageStartIndex = contacts.skip + contacts.limit),
+        pluck('data')
+      ) as undefined) as Observable<ContactModel[]>;
   }
 
   getPage(pageNumber: number) {
     this.contacts = (from(this._contactService.getContacts((pageNumber - 1) * 10))
       .pipe(
-        tap(contacts => this.skipCount = contacts.skip),
+        tap(contacts => this.nextPageStartIndex = contacts.skip + contacts.limit),
         pluck('data')
       ) as undefined) as Observable<ContactModel[]>;
   }
 
   getPreviousPage() {
-    this.skipCount -= 10;
-    this.contacts = (from(this._contactService.getContacts(this.skipCount))
-      .pipe(pluck('data')) as undefined) as Observable<ContactModel[]>;
+    this.contacts = (from(this._contactService.getContacts(this.nextPageStartIndex))
+        .pipe(
+          tap(contacts => this.nextPageStartIndex = contacts.skip - contacts.limit),
+          pluck('data')) as undefined
+    ) as Observable<ContactModel[]>;
   }
 }
