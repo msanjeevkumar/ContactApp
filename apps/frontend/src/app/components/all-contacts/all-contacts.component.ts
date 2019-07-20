@@ -16,7 +16,6 @@ export class AllContactsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contacts = (from(this._contactService.getContacts())
-      .pipe(pluck('data')) as undefined) as Observable<ContactModel[]>;
+    this.contacts = (from(this._contactService.getContacts()).pipe(pluck('data')) as undefined) as Observable<ContactModel[]>;
   }
 }

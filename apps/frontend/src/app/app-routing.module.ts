@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: '', component: AllContactsComponent },
   { path: 'add', component: AddContactsComponent },
   { path: ':id', component: ContactDetailsComponent }
-  // { path: '', redirectTo: 'contacts', pathMatch: 'full' }
 ];
 
 @NgModule({
