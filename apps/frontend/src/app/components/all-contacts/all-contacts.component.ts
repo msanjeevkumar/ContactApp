@@ -11,6 +11,8 @@ import { ContactService } from '../../services/contact.service';
 })
 export class AllContactsComponent implements OnInit {
   contacts: Observable<ContactModel[]>;
+  limit = 0;
+  skip = 0;
   nextPageStartIndex = 0;
   totalContacts = 0;
   pagination: number[] = [];
@@ -19,38 +21,44 @@ export class AllContactsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contacts = (from(this._contactService.getContacts(this.nextPageStartIndex))
-      .pipe(
-        tap(contacts => {
-          this.totalContacts = contacts.total;
-          this.nextPageStartIndex = contacts.skip + contacts.limit;
-          this.pagination = Array.from(Array(Math.ceil(this.totalContacts / 10)).keys()).map(page => page + 1);
-        }),
-        pluck('data')
-      ) as undefined) as Observable<ContactModel[]>;
+    this.contacts = (from(this._contactService.getContacts(this.nextPageStartIndex)).pipe(
+      tap(contacts => {
+        this.totalContacts = contacts.total;
+        this.limit = contacts.limit;
+        this.skip = contacts.skip;
+        this.pagination = Array.from(Array(Math.ceil(this.totalContacts / 10)).keys()).map(page => page + 1);
+      }),
+      pluck('data')
+    ) as undefined) as Observable<ContactModel[]>;
   }
 
   getNextPage() {
-    this.contacts = (from(this._contactService.getContacts(this.nextPageStartIndex))
-      .pipe(
-        tap(contacts => this.nextPageStartIndex = contacts.skip + contacts.limit),
-        pluck('data')
-      ) as undefined) as Observable<ContactModel[]>;
+    this.contacts = (from(this._contactService.getContacts(this.skip + this.limit)).pipe(
+      tap(contacts => {
+        this.limit = contacts.limit;
+        this.skip = contacts.skip;
+      }),
+      pluck('data')
+    ) as undefined) as Observable<ContactModel[]>;
   }
 
   getPage(pageNumber: number) {
-    this.contacts = (from(this._contactService.getContacts((pageNumber - 1) * 10))
-      .pipe(
-        tap(contacts => this.nextPageStartIndex = contacts.skip + contacts.limit),
-        pluck('data')
-      ) as undefined) as Observable<ContactModel[]>;
+    this.contacts = (from(this._contactService.getContacts((pageNumber - 1) * this.limit)).pipe(
+      tap(contacts => {
+        this.limit = contacts.limit;
+        this.skip = contacts.skip;
+      }),
+      pluck('data')
+    ) as undefined) as Observable<ContactModel[]>;
   }
 
   getPreviousPage() {
-    this.contacts = (from(this._contactService.getContacts(this.nextPageStartIndex))
-        .pipe(
-          tap(contacts => this.nextPageStartIndex = contacts.skip - contacts.limit),
-          pluck('data')) as undefined
-    ) as Observable<ContactModel[]>;
+    this.contacts = (from(this._contactService.getContacts(this.skip - this.limit)).pipe(
+      tap(contacts => {
+        this.limit = contacts.limit;
+        this.skip = contacts.skip;
+      }),
+      pluck('data')
+    ) as undefined) as Observable<ContactModel[]>;
   }
 }
