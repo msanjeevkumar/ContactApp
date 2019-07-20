@@ -1,0 +1,14 @@
+<div class="h1">All Contacts</div>
+<hr/>
+<br/>
+<div class="row">
+  <div *ngFor="let contact of (contacts | async)" class="col-sm-6 my-2">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ contact.name }}</h5>
+        <p class="card-text">{{ contact.email }}</p>
+        <a class="btn btn-primary" href="{{ contact.id }}">Edit</a>
+      </div>
+    </div>
+  </div>
+</div>
