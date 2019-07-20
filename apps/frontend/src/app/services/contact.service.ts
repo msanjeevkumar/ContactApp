@@ -13,12 +13,14 @@ export class ContactService {
       .service('contacts');
   }
 
-  getContacts = async (): Promise<ContactsDto> =>
-    this.contacts.find({
+  async getContacts(skip: number = 0): Promise<ContactsDto> {
+    return this.contacts.find({
       query: {
-        $skip: 10
+        $skip: skip
       }
     });
+  }
+
 
   create = async (contact: ContactDto) => this.contacts.create(contact);
 
